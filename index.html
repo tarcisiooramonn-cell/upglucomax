@@ -98,6 +98,31 @@
   .dots{display:flex;justify-content:center;gap:6px;margin-top:8px}
   .dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.2);transition:background .3s,width .3s}
   .dots i.on{width:18px;border-radius:4px;background:var(--gold)}
+  /* fluxo de sangue sem / com GlucoMax */
+  .flowcmp{margin-bottom:12px;border-radius:18px;padding:14px 12px 10px;border:1px solid var(--edge);background:linear-gradient(180deg,rgba(255,236,224,.05),rgba(255,236,224,.012))}
+  .flowcmp h2{font-family:var(--display);font-weight:800;font-size:18px;line-height:1.2;margin:0 4px 10px}
+  .lane{margin-bottom:8px}
+  .lane .lh{display:flex;justify-content:space-between;align-items:baseline;margin:0 4px 4px;font-size:13px;font-weight:800}
+  .lane.bad .lh span:first-child{color:#ff8f7f}
+  .lane.good .lh span:first-child{color:#7ff0b0}
+  .lane .lh span:last-child{font-size:12px;color:var(--muted);font-weight:700}
+  .lane svg{display:block;width:100%;height:auto;border-radius:12px;background:#0b0304}
+  .lane .meter{height:5px;margin:6px 4px 0;border-radius:5px;background:rgba(255,255,255,.1);overflow:hidden}
+  .lane .meter i{display:block;height:100%;border-radius:5px}
+  .lane.bad .meter i{width:34%;background:linear-gradient(90deg,#7d0c12,#ff6b5e)}
+  .lane.good .meter i{width:100%;background:linear-gradient(90deg,var(--gold),var(--ok))}
+  .cell{animation:run linear infinite}
+  .bad .cell{animation-name:crawl;animation-duration:7s;animation-timing-function:ease-in-out}
+  .good .cell{animation-duration:2.4s}
+  @keyframes run{from{transform:translateX(-30px)}to{transform:translateX(390px)}}
+  @keyframes crawl{0%{transform:translateX(-30px)}35%{transform:translateX(120px)}50%{transform:translateX(150px)}65%{transform:translateX(175px)}100%{transform:translateX(390px)}}
+  .glow{animation:pulseg 2.4s ease-in-out infinite}
+  @keyframes pulseg{50%{opacity:.35}}
+  .flowcmp .fine{text-align:center;font-size:11px;color:var(--dim);margin-top:4px}
+  .guarantee{display:flex;gap:10px;align-items:center;margin-top:12px;padding:10px 12px;border-radius:14px;border:1px solid rgba(61,220,132,.35);background:rgba(61,220,132,.07);text-align:left}
+  .guarantee .ic{font-size:24px;line-height:1}
+  .guarantee p{font-size:13.5px;line-height:1.35;color:var(--text)}
+  .guarantee b{color:#9ff5c3}
   /* CTA (KashPay markup untouched; visual override only, no display changes) */
   .cta-halo{padding:16px 16px 18px}
   .cta-halo button[onclick^="acceptUpsell"]{width:100%!important;min-height:62px;font-family:var(--body)!important;font-size:clamp(19px,5.4vw,23px)!important;font-weight:800!important;line-height:1.25!important;color:#fff!important;
@@ -156,9 +181,22 @@
     <div class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
   </div>
 
-  <div class="duo">
-    <div class="col"><h3>Protocole seul</h3><ul><li>Le sucre continue d'abîmer les vaisseaux</li><li>Les progrès peuvent s'essouffler</li></ul></div>
-    <div class="col win"><h3>Protocole + GlucoMax</h3><ul><li>Vaisseaux protégés</li><li>Des résultats qui durent</li></ul></div>
+  <div class="flowcmp">
+    <h2>Ce qui se passe dans vos vaisseaux</h2>
+    <div class="lane bad"><div class="lh"><span>✕ Sans GlucoMax</span><span>Le sucre freine le sang</span></div><svg viewBox="0 0 360 86" aria-label="Sans GlucoMax : sang ralenti par le sucre"><defs><radialGradient id="rbc" cx=".4" cy=".35"><stop offset="0" stop-color="#ff7a6e"/><stop offset=".7" stop-color="#d0141f"/><stop offset="1" stop-color="#7a0a10"/></radialGradient><linearGradient id="wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff9a6b" stop-opacity=".55"/><stop offset=".5" stop-color="#ff9a6b" stop-opacity="0"/><stop offset="1" stop-color="#ff9a6b" stop-opacity=".55"/></linearGradient></defs>
+<rect x="0" y="14" width="360" height="58" fill="#2a0508"/>
+<path d="M0 14 H360 M0 72 H360" stroke="url(#wall)" stroke-width="3"/>
+<path d="M90 14 Q130 34 170 14 Z M200 72 Q240 50 280 72 Z M20 72 Q45 60 70 72 Z" fill="#c9a07a" opacity=".55"/>
+<rect x="60" y="22" width="7" height="7" rx="1.2" fill="#fff" opacity=".85" transform="rotate(20 63.5 25.5)"/><rect x="95" y="58" width="7" height="7" rx="1.2" fill="#fff" opacity=".85" transform="rotate(-15 98.5 61.5)"/><rect x="150" y="27" width="7" height="7" rx="1.2" fill="#fff" opacity=".85" transform="rotate(35 153.5 30.5)"/><rect x="205" y="56" width="7" height="7" rx="1.2" fill="#fff" opacity=".85" transform="rotate(10 208.5 59.5)"/><rect x="250" y="24" width="7" height="7" rx="1.2" fill="#fff" opacity=".85" transform="rotate(-25 253.5 27.5)"/><rect x="300" y="57" width="7" height="7" rx="1.2" fill="#fff" opacity=".85" transform="rotate(30 303.5 60.5)"/><rect x="128" y="40" width="7" height="7" rx="1.2" fill="#fff" opacity=".85" transform="rotate(15 131.5 43.5)"/>
+<g class="cell" style="animation-delay:-0.03s"><ellipse cx="0" cy="36.1" rx="10" ry="6.5" fill="url(#rbc)"/><ellipse cx="0" cy="36.1" rx="4" ry="2.4" fill="#7a0a10" opacity=".55"/></g><g class="cell" style="animation-delay:-1.45s"><ellipse cx="0" cy="40.3" rx="10" ry="6.5" fill="url(#rbc)"/><ellipse cx="0" cy="40.3" rx="4" ry="2.4" fill="#7a0a10" opacity=".55"/></g><g class="cell" style="animation-delay:-2.92s"><ellipse cx="0" cy="31.7" rx="10" ry="6.5" fill="url(#rbc)"/><ellipse cx="0" cy="31.7" rx="4" ry="2.4" fill="#7a0a10" opacity=".55"/></g><g class="cell" style="animation-delay:-4.44s"><ellipse cx="0" cy="53.9" rx="10" ry="6.5" fill="url(#rbc)"/><ellipse cx="0" cy="53.9" rx="4" ry="2.4" fill="#7a0a10" opacity=".55"/></g><g class="cell" style="animation-delay:-5.67s"><ellipse cx="0" cy="49.9" rx="10" ry="6.5" fill="url(#rbc)"/><ellipse cx="0" cy="49.9" rx="4" ry="2.4" fill="#7a0a10" opacity=".55"/></g>
+</svg><div class="meter"><i></i></div></div>
+    <div class="lane good"><div class="lh"><span>✓ Avec GlucoMax</span><span>Le sang circule librement</span></div><svg viewBox="0 0 360 86" aria-label="Avec GlucoMax : sang fluide"><defs><radialGradient id="rbc2" cx=".4" cy=".35"><stop offset="0" stop-color="#ff7a6e"/><stop offset=".7" stop-color="#d0141f"/><stop offset="1" stop-color="#7a0a10"/></radialGradient><linearGradient id="wall2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff9a6b" stop-opacity=".55"/><stop offset=".5" stop-color="#ff9a6b" stop-opacity="0"/><stop offset="1" stop-color="#ff9a6b" stop-opacity=".55"/></linearGradient></defs>
+<rect x="0" y="10" width="360" height="66" fill="#3a070b"/>
+<rect class="glow" x="0" y="10" width="360" height="66" fill="#ff5a3a" opacity=".12"/>
+<path d="M0 10 H360 M0 76 H360" stroke="url(#wall2)" stroke-width="3"/>
+<g class="cell" style="animation-delay:-0.08s"><ellipse cx="0" cy="44.5" rx="10" ry="6.5" fill="url(#rbc2)"/><ellipse cx="0" cy="44.5" rx="4" ry="2.4" fill="#7a0a10" opacity=".55"/></g><g class="cell" style="animation-delay:-0.20s"><ellipse cx="0" cy="29.3" rx="10" ry="6.5" fill="url(#rbc2)"/><ellipse cx="0" cy="29.3" rx="4" ry="2.4" fill="#7a0a10" opacity=".55"/></g><g class="cell" style="animation-delay:-0.62s"><ellipse cx="0" cy="31.0" rx="10" ry="6.5" fill="url(#rbc2)"/><ellipse cx="0" cy="31.0" rx="4" ry="2.4" fill="#7a0a10" opacity=".55"/></g><g class="cell" style="animation-delay:-0.76s"><ellipse cx="0" cy="56.8" rx="10" ry="6.5" fill="url(#rbc2)"/><ellipse cx="0" cy="56.8" rx="4" ry="2.4" fill="#7a0a10" opacity=".55"/></g><g class="cell" style="animation-delay:-0.74s"><ellipse cx="0" cy="55.6" rx="10" ry="6.5" fill="url(#rbc2)"/><ellipse cx="0" cy="55.6" rx="4" ry="2.4" fill="#7a0a10" opacity=".55"/></g><g class="cell" style="animation-delay:-1.05s"><ellipse cx="0" cy="35.0" rx="10" ry="6.5" fill="url(#rbc2)"/><ellipse cx="0" cy="35.0" rx="4" ry="2.4" fill="#7a0a10" opacity=".55"/></g><g class="cell" style="animation-delay:-1.28s"><ellipse cx="0" cy="52.7" rx="10" ry="6.5" fill="url(#rbc2)"/><ellipse cx="0" cy="52.7" rx="4" ry="2.4" fill="#7a0a10" opacity=".55"/></g><g class="cell" style="animation-delay:-1.23s"><ellipse cx="0" cy="59.0" rx="10" ry="6.5" fill="url(#rbc2)"/><ellipse cx="0" cy="59.0" rx="4" ry="2.4" fill="#7a0a10" opacity=".55"/></g><g class="cell" style="animation-delay:-1.57s"><ellipse cx="0" cy="47.4" rx="10" ry="6.5" fill="url(#rbc2)"/><ellipse cx="0" cy="47.4" rx="4" ry="2.4" fill="#7a0a10" opacity=".55"/></g><g class="cell" style="animation-delay:-1.60s"><ellipse cx="0" cy="43.3" rx="10" ry="6.5" fill="url(#rbc2)"/><ellipse cx="0" cy="43.3" rx="4" ry="2.4" fill="#7a0a10" opacity=".55"/></g><g class="cell" style="animation-delay:-1.74s"><ellipse cx="0" cy="41.9" rx="10" ry="6.5" fill="url(#rbc2)"/><ellipse cx="0" cy="41.9" rx="4" ry="2.4" fill="#7a0a10" opacity=".55"/></g><g class="cell" style="animation-delay:-2.15s"><ellipse cx="0" cy="61.3" rx="10" ry="6.5" fill="url(#rbc2)"/><ellipse cx="0" cy="61.3" rx="4" ry="2.4" fill="#7a0a10" opacity=".55"/></g><g class="cell" style="animation-delay:-2.15s"><ellipse cx="0" cy="45.0" rx="10" ry="6.5" fill="url(#rbc2)"/><ellipse cx="0" cy="45.0" rx="4" ry="2.4" fill="#7a0a10" opacity=".55"/></g><g class="cell" style="animation-delay:-2.40s"><ellipse cx="0" cy="60.2" rx="10" ry="6.5" fill="url(#rbc2)"/><ellipse cx="0" cy="60.2" rx="4" ry="2.4" fill="#7a0a10" opacity=".55"/></g>
+</svg><div class="meter"><i></i></div></div>
+    <p class="fine">Illustration simplifiée, à titre éducatif.</p>
   </div>
 
   <div class="offer" id="offre">
@@ -177,6 +215,7 @@
       <button type="button" onclick="acceptUpsell('https://checkout.kashpay.com/u/f71b69b6782eef26')" style="font-family: 'Poppins'; font-size: 26px; font-weight: 600; line-height: 1.3; color: #ffffff; background-color: #02451c; border: none; border-radius: 50px; padding: 13px 7%; cursor: pointer; text-align: center; display: block; margin: auto;">Bénéficier de ma réduction</button>
       <p class="busy-msg" aria-live="polite">⏳ Validation en cours… ne cliquez pas une deuxième fois.</p>
       <div class="microcopy"><span>⚡ Ajouté en 1 clic, sans ressaisir votre carte</span><span>🔒 Paiement sécurisé</span></div>
+      <div class="guarantee"><span class="ic">🛡️</span><p><b>Garantie 30 jours satisfait ou remboursé.</b> GlucoMax est couvert par la même garantie que votre commande.</p></div>
       <p class="scarcity">Si vous quittez cette page, la remise disparaît.</p>
     </div>
   </div>
